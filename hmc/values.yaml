@@ -1,0 +1,88 @@
+hmc:
+  inboundAdapter:
+    enabled: true
+  outboundAdapter:
+    enabled: true
+  s2s:
+    enabled: true
+
+global:
+  idamApiUrl: ""
+  idamWebUrl: ""
+  s2sUrl: "http://{{ .Release.Name }}-s2s"
+
+hmc-hmi-inbound-adapter:
+  java:
+    image: 'hmctspublic.azurecr.io/hmc/hmi-inbound-adapter:latest'
+    imagePullPolicy: Always
+    ingressHost: ""
+    releaseNameOverride: "{{ .Release.Name }}-hmc-hmi-inbound-adapter"
+    readinessDelay: 240
+    livenessDelay: 240
+    environment:
+      HMC_SERVICE_BUS_QUEUE: hmc-from-hmi-{{ .Values.global.environment }}
+      CFT_HEARING_SERVICE_URL: http://hmc-cft-hearing-service-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+      IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
+      S2S_URL: http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+    secrets:
+      HMC_SERVICE_BUS_CONNECTION_STRING:
+        secretRef: servicebus-secret-topic-{{ .Release.Name }}-servicebus-hmc-from-hmi
+        key: connectionString
+        disabled: true
+      IDAM_KEY_HMI_INBOUND_ADAPTER:
+        secretRef: hmc-hmi-inbound-adapter-s2s-secret
+        key: key
+        disabled: true
+      IDAM_DATA_STORE_SYSTEM_USER_PASSWORD:
+        secretRef: idam-data-store-system-user-password
+        key: key
+        disabled: true
+      IDAM_CLIENT_SECRET:
+        secretRef: idam-hmc-hmi-inbound-adapter-client-secret
+        key: key
+        disabled: true
+      HMC_SYSTEM_USER_ID:
+        secretRef: idam-hmc-system-user-username
+        key: key
+        disabled: true
+      HMC_SYSTEM_USER_PASSWORD:
+        secretRef: idam-hmc-system-user-password
+        key: key
+        disabled: true
+
+hmc-hmi-outbound-adapter:
+  java:
+    image: 'hmctspublic.azurecr.io/hmc/hmi-outbound-adapter:latest'
+    imagePullPolicy: Always
+    ingressHost: ""
+    releaseNameOverride: "{{ .Release.Name }}-hmc-hmi-outbound-adapter"
+    readinessDelay: 240
+    livenessDelay: 240
+    environment:
+      HMC_SERVICE_BUS_OUTBOUND_QUEUE: hmc-to-hmi-{{ .Values.global.environment }}
+      HMC_SERVICE_BUS_INBOUND_QUEUE: hmc-from-hmi-{{ .Values.global.environment }}
+    secrets:
+      CLIENT_ID:
+        secretRef: ClientId
+        key: key
+        disabled: true
+      CLIENT_SECRET:
+        secretRef: ClientSecret
+        key: key
+        disabled: true
+      SCOPE:
+        secretRef: Scope
+        key: key
+        disabled: true
+      HMC_SERVICE_BUS_OUTBOUND_CONNECTION_STRING:
+        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-hmi
+        key: key
+        disabled: true
+      HMC_SERVICE_BUS_INBOUND_CONNECTION_STRING:
+        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-from-hmi
+        key: key
+        disabled: true
+      FH_GET_TOKEN_URL:
+        secretRef: fh-get-token-url
+        key: key
+        disabled: true

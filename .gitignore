@@ -1,0 +1,4 @@
+*.tgz
+.idea/
+hmc/charts/
+hmc/Chart.lock

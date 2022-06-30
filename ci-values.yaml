@@ -1,0 +1,18 @@
+#todo test idam-pr
+tags:
+  idam-pr: false
+
+ingressHost: chart-hmc-release.service.core-compute-preview.internal
+ingressIP: "10.97.17.51"
+consulIP: "10.97.11.254"
+
+readinessDelay: 90
+livenessDelay: 90
+
+global:
+  subscriptionId: "8b6ea922-0862-443e-af15-6056e1c9b9a4"
+  tenantId: "531ff96d-0ae9-462a-8d2d-bec7c0b42082"
+  idamApiUrl: https://idam-api.aat.platform.hmcts.net
+  idamWebUrl: https://idam-web-public.aat.platform.hmcts.net
+  environment: aat
+  devMode: true
