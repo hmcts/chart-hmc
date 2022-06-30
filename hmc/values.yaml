@@ -45,10 +45,10 @@ hmc-hmi-outbound-adapter:
     secrets:
       HMC_SERVICE_BUS_OUTBOUND_CONNECTION_STRING:
         secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-hmi
-        key: key
+        key: connectionString
       HMC_SERVICE_BUS_INBOUND_CONNECTION_STRING:
         secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-from-hmi
-        key: key
+        key: connectionString
 
 servicebus:
   enabled: true
