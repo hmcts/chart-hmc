@@ -14,3 +14,8 @@ dependencies:
     version: 0.1.3
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     condition: hmc.outboundAdapter.enabled
+
+  - name: servicebus
+    version: 0.3.0
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+    condition: hmc.servicebus.enabled

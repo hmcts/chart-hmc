@@ -5,6 +5,8 @@ hmc:
     enabled: true
   s2s:
     enabled: true
+  servicebus:
+    enabled: true
 
 global:
   idamApiUrl: ""
@@ -86,3 +88,17 @@ hmc-hmi-outbound-adapter:
         secretRef: fh-get-token-url
         key: key
         disabled: true
+
+servicebus:
+  enabled: true
+  teamName: CCD
+  resourceGroup: hmc-aks
+  serviceplan: standard
+  setup:
+    topics:
+      - name: hmc-to-cft
+    subscriptions:
+      - name: hmc-subs-to-cft
+    queues:
+      - name: hmc-from-hmi
+      - name: hmc-to-hmi
