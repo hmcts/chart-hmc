@@ -1,0 +1,16 @@
+apiVersion: v2
+name: hmc
+version: 0.0.1
+icon: https://github.com/hmcts/chart-hmc/raw/master/images/icons8-java-50.png
+keywords:
+  - hmc
+dependencies:
+  - name: hmc-hmi-inbound-adapter
+    version: 0.1.5
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+    condition: hmc.inboundAdapter.enabled
+
+  - name: hmc-hmi-outbound-adapter
+    version: 0.1.3
+    repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
+    condition: hmc.outboundAdapter.enabled
