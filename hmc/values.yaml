@@ -30,27 +30,21 @@ hmc-hmi-inbound-adapter:
       HMC_SERVICE_BUS_CONNECTION_STRING:
         secretRef: servicebus-secret-topic-{{ .Release.Name }}-servicebus-hmc-from-hmi
         key: connectionString
-        disabled: true
       IDAM_KEY_HMI_INBOUND_ADAPTER:
         secretRef: hmc-hmi-inbound-adapter-s2s-secret
         key: key
-        disabled: true
       IDAM_DATA_STORE_SYSTEM_USER_PASSWORD:
         secretRef: idam-data-store-system-user-password
         key: key
-        disabled: true
       IDAM_CLIENT_SECRET:
         secretRef: idam-hmc-hmi-inbound-adapter-client-secret
         key: key
-        disabled: true
       HMC_SYSTEM_USER_ID:
         secretRef: idam-hmc-system-user-username
         key: key
-        disabled: true
       HMC_SYSTEM_USER_PASSWORD:
         secretRef: idam-hmc-system-user-password
         key: key
-        disabled: true
 
 hmc-hmi-outbound-adapter:
   java:
@@ -67,27 +61,21 @@ hmc-hmi-outbound-adapter:
       CLIENT_ID:
         secretRef: ClientId
         key: key
-        disabled: true
       CLIENT_SECRET:
         secretRef: ClientSecret
         key: key
-        disabled: true
       SCOPE:
         secretRef: Scope
         key: key
-        disabled: true
       HMC_SERVICE_BUS_OUTBOUND_CONNECTION_STRING:
         secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-hmi
         key: key
-        disabled: true
       HMC_SERVICE_BUS_INBOUND_CONNECTION_STRING:
         secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-from-hmi
         key: key
-        disabled: true
       FH_GET_TOKEN_URL:
         secretRef: fh-get-token-url
         key: key
-        disabled: true
 
 servicebus:
   enabled: true
