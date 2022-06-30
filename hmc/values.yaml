@@ -57,10 +57,10 @@ java:
   imagePullPolicy: Always
   ingressHost: ""
   releaseNameOverride: "{{ .Release.Name }}-hmc-cft-hearing-service"
-    readinessDelay: 240
-    livenessDelay: 240
+  readinessDelay: 240
+  livenessDelay: 240
   postgresql:
-    enabled:true
+    enabled: true
   environment:
     HMC_SERVICE_BUS_TOPIC: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-cft
     HMC_SERVICE_BUS_SUBSCRIPTION: hmc-subs-to-cft
