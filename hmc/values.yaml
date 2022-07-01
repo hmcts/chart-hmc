@@ -63,10 +63,10 @@ hmc-cft-hearing-service:
     postgresql:
       enabled: true
     environment:
-      HMC_SERVICE_BUS_TOPIC: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-cft
+      HMC_SERVICE_BUS_TOPIC: hmc-to-cft
       HMC_SERVICE_BUS_SUBSCRIPTION: hmc-subs-to-cft
-      HMC_SERVICE_BUS_QUEUE: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-from-hmi
-      HMC_OUTBOUND_SERVICE_BUS_QUEUE: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-hmi
+      HMC_SERVICE_BUS_QUEUE: hmc-from-hmi
+      HMC_OUTBOUND_SERVICE_BUS_QUEUE: hmc-to-hmi
       IDAM_OIDC_URL: https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net
       OIDC_ISSUER: https://forgerock-am.service.core-compute-idam-{{ .Values.global.environment }}.internal:8443/openam/oauth2/hmcts
       IDAM_API_URL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
@@ -79,6 +79,17 @@ hmc-cft-hearing-service:
       CFT_HEARING_SERVICE_DB_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
       CFT_HEARING_SERVICE_DB_OPTIONS: "?stringtype=unspecified"
       CFT_HEARING_SERVICE_DB_PORT: 5432
+    secrets:
+      HMC_SERVICE_BUS_CONNECTION_STRING:
+        secretRef: servicebus-secret-topic-{{ .Release.Name }}-servicebus-hmc-to-cft
+        key: connectionString
+      HMC_QUEUE_CONNECTION_STRING:
+        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-from-hmi
+        key: connectionString
+      HMC_OUTBOUND_QUEUE_CONNECTION_STRING:
+        secretRef: servicebus-secret-queue-{{ .Release.Name }}-servicebus-hmc-to-hmi
+        key: connectionString
+
 servicebus:
   enabled: true
   teamName: CCD
