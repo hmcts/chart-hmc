@@ -73,7 +73,12 @@ hmc-cft-hearing-service:
       S2S_URL: http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
       CCD_DATA_STORE_API_BASE_URL: http://ccd-data-store-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
       ROLE_ASSIGNMENT_URL: http://am-role-assignment-service-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
-
+      CFT_HEARING_SERVICE_DB_HOST: "{{ .Release.Name }}-postgresql"
+      CFT_HEARING_SERVICE_DB_NAME: "{{ .Values.postgresql.postgresqlDatabase}}"
+      CFT_HEARING_SERVICE_DB_USERNAME: "{{ .Values.postgresql.postgresqlUsername}}"
+      CFT_HEARING_SERVICE_DB_PASSWORD: "{{ .Values.postgresql.postgresqlPassword}}"
+      CFT_HEARING_SERVICE_DB_OPTIONS: "?stringtype=unspecified"
+      CFT_HEARING_SERVICE_DB_PORT: 5432
 servicebus:
   enabled: true
   teamName: CCD
