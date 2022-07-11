@@ -92,7 +92,8 @@ hmc-cft-hearing-service:
 
 servicebus:
   enabled: true
-  teamName: CCD
+  tags:
+    teamName: CCD
   resourceGroup: hmc-aks
   serviceplan: standard
   setup:
