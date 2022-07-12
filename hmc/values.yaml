@@ -93,7 +93,11 @@ hmc-cft-hearing-service:
 servicebus:
   enabled: true
   tags:
-    teamName: CCD
+    teamName: "CDM"
+    applicationName: "core-case-data"
+    builtFrom: "https://github.com/hmcts/chart-hmc"
+    businessArea: "CFT"
+    environment: "development"
   resourceGroup: hmc-aks
   serviceplan: standard
   setup:
