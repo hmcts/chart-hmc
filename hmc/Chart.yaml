@@ -1,22 +1,22 @@
 apiVersion: v2
 name: hmc
-version: 0.0.3
+version: 0.0.4
 icon: https://github.com/hmcts/chart-hmc/raw/master/images/icons8-java-50.png
 keywords:
   - hmc
 dependencies:
   - name: hmc-hmi-inbound-adapter
-    version: 0.1.9
+    version: 0.1.10
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     condition: hmc.inboundAdapter.enabled
 
   - name: hmc-hmi-outbound-adapter
-    version: 0.1.6
+    version: 0.1.7
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     condition: hmc.outboundAdapter.enabled
 
   - name: hmc-cft-hearing-service
-    version: 1.6.9
+    version: 1.6.10
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     condition: hmc.hearingService.enabled
 
