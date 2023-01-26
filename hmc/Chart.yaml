@@ -6,17 +6,17 @@ keywords:
   - hmc
 dependencies:
   - name: hmc-hmi-inbound-adapter
-    version: 0.1.10
+    version: 0.1.11
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     condition: hmc.inboundAdapter.enabled
 
   - name: hmc-hmi-outbound-adapter
-    version: 0.1.7
+    version: 0.1.8
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     condition: hmc.outboundAdapter.enabled
 
   - name: hmc-cft-hearing-service
-    version: 1.6.10
+    version: 1.6.11
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     condition: hmc.hearingService.enabled
 
