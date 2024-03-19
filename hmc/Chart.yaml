@@ -6,7 +6,7 @@ keywords:
   - hmc
 dependencies:
   - name: hmc-hmi-inbound-adapter
-    version: 0.1.12
+    version: 0.1.16
     repository: 'https://hmctspublic.azurecr.io/helm/v1/repo/'
     condition: hmc.inboundAdapter.enabled
 
