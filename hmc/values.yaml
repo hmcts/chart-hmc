@@ -41,8 +41,6 @@ hmc-hmi-outbound-adapter:
     releaseNameOverride: "{{ .Release.Name }}-hmc-hmi-outbound-adapter"
     readinessDelay: 240
     livenessDelay: 240
-    postgresql:
-      enabled: true
     environment:
       HMC_SERVICE_BUS_OUTBOUND_QUEUE: hmc-to-hmi
       HMC_SERVICE_BUS_INBOUND_QUEUE: hmc-from-hmi
