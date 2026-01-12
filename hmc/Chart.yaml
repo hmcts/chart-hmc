@@ -16,7 +16,7 @@ dependencies:
     condition: hmc.outboundAdapter.enabled
 
   - name: hmc-cft-hearing-service
-    version: 1.6.21
+    version: 1.6.23
     repository: 'oci://hmctspublic.azurecr.io/helm'
     condition: hmc.hearingService.enabled
 
