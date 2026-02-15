@@ -42,13 +42,27 @@ hmc-hmi-outbound-adapter:
     readinessDelay: 240
     livenessDelay: 240
     environment:
-      HMC_SERVICE_BUS_OUTBOUND_QUEUE: hmc-to-hmi
-      HMC_SERVICE_BUS_INBOUND_QUEUE: hmc-from-hmi
+      CFT_HEARING_SERVICE_DB_HOST: "{{ .Release.Name }}-postgresql"
+      CFT_HEARING_SERVICE_DB_NAME: "{{ .Values.postgresql.auth.database}}"
+      CFT_HEARING_SERVICE_DB_USERNAME: "{{ .Values.postgresql.auth.username}}"
+      CFT_HEARING_SERVICE_DB_PASSWORD: "{{ .Values.postgresql.auth.password}}"
+      CFT_HEARING_SERVICE_DB_PORT: 5432
+      HMI_BASE_URL: http://ccd-test-stubs-service-aat.service.core-compute-aat.internal/hmi
+      HMI_SOURCE_SYSTEM: CFT
+      HMI_DESTINATION_SYSTEM: SNL
+      GRANT_TYPE: client_credentials
+      HMC_SERVICE_BUS_OUTBOUND_QUEUE: ${SERVICE_NAME}-servicebus-hmc-to-hmi
+      HMC_SERVICE_BUS_INBOUND_QUEUE: ${SERVICE_NAME}-servicebus-hmc-from-hmi
+      HMC_SERVICE_BUS_TOPIC: ${SERVICE_NAME}-servicebus-hmc-to-cft
+      PR_PENDING_WAIT_IN_MILLISECS: 5000
     secrets:
       HMC_SERVICE_BUS_OUTBOUND_CONNECTION_STRING:
         secretRef: hmc-sb-preview
         key: connectionString
       HMC_SERVICE_BUS_INBOUND_CONNECTION_STRING:
+        secretRef: hmc-sb-preview
+        key: connectionString
+      HMC_SERVICE_BUS_CONNECTION_STRING:
         secretRef: hmc-sb-preview
         key: connectionString
 
@@ -109,4 +123,3 @@ servicebus:
     queues:
       - name: hmc-from-hmi
       - name: hmc-to-hmi
-
