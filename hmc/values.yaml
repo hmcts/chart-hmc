@@ -44,11 +44,15 @@ hmc-hmi-outbound-adapter:
     environment:
       HMC_SERVICE_BUS_OUTBOUND_QUEUE: hmc-to-hmi
       HMC_SERVICE_BUS_INBOUND_QUEUE: hmc-from-hmi
+      HMC_SERVICE_BUS_TOPIC: hmc-to-cft
     secrets:
       HMC_SERVICE_BUS_OUTBOUND_CONNECTION_STRING:
         secretRef: hmc-sb-preview
         key: connectionString
       HMC_SERVICE_BUS_INBOUND_CONNECTION_STRING:
+        secretRef: hmc-sb-preview
+        key: connectionString
+      HMC_SERVICE_BUS_CONNECTION_STRING:
         secretRef: hmc-sb-preview
         key: connectionString
 
@@ -89,7 +93,7 @@ hmc-cft-hearing-service:
       HMC_OUTBOUND_QUEUE_CONNECTION_STRING:
         secretRef: hmc-sb-preview
         key: connectionString
-        
+
 servicebus:
   enabled: true
   tags:
